@@ -1,0 +1,10 @@
+certs_reqs/*
+client_ca/certs/*
+client_ca/private/*
+out.log
+client_ca/*.pem
+client_ca/*.req
+client_ca/*.srl
+client_ca/serial
+client_ca/index.txt
+

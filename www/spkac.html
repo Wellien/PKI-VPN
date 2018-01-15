@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Génération d'une paire de clé</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Page de génération de SPKAC (Signed Public Key And Challenge)</h1>
+			<form method="post">
+				email : <input type="text" name="email"><br />
+				CN : <input type="text" name="cn"><br />
+   				<keygen name="spkac" keytype="ec" challenge="" keyparams="secp256r1"><br />
+  				<input type="submit" value="Generate">
+  			</form>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+# Ce fichier viminfo a été généré par Vim 8.0.
+# Vous pouvez l'éditer, mais soyez prudent.
+
+# Viminfo version
+|1,4
+
+# 'encoding' dans lequel ce fichier a été écrit
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Historique ligne de commande (chronologie décroissante) :
+:wq
+|2,0,1515583620,,"wq"
+
+# Historique chaîne de recherche (chronologie décroissante) :
+
+# Historique expression (chronologie décroissante) :
+
+# Historique ligne de saisie (chronologie décroissante) :
+
+# Historique Ligne de débogage (chronologie décroissante) :
+
+# Registres :
+
+# Marques dans le fichier :
+'0  3  11  ~/scripts/handle_spkac.sh
+|4,48,3,11,1515583678,"~/scripts/handle_spkac.sh"
+'1  6  17  ~/scripts/handle_spkac.sh
+|4,49,6,17,1515583620,"~/scripts/handle_spkac.sh"
+'2  6  17  ~/scripts/handle_spkac.sh
+|4,50,6,17,1515583620,"~/scripts/handle_spkac.sh"
+'3  12  29  ~/scripts/handle_spkac.sh
+|4,51,12,29,1515583578,"~/scripts/handle_spkac.sh"
+'4  12  29  ~/scripts/handle_spkac.sh
+|4,52,12,29,1515583578,"~/scripts/handle_spkac.sh"
+'5  12  29  ~/scripts/handle_spkac.sh
+|4,53,12,29,1515583578,"~/scripts/handle_spkac.sh"
+'6  12  29  ~/scripts/handle_spkac.sh
+|4,54,12,29,1515583578,"~/scripts/handle_spkac.sh"
+
+# Liste de sauts (le plus récent en premier) :
+-'  3  11  ~/scripts/handle_spkac.sh
+|4,39,3,11,1515583678,"~/scripts/handle_spkac.sh"
+-'  6  17  ~/scripts/handle_spkac.sh
+|4,39,6,17,1515583653,"~/scripts/handle_spkac.sh"
+-'  6  17  ~/scripts/handle_spkac.sh
+|4,39,6,17,1515583620,"~/scripts/handle_spkac.sh"
+-'  12  29  ~/scripts/handle_spkac.sh
+|4,39,12,29,1515583613,"~/scripts/handle_spkac.sh"
+-'  12  29  ~/scripts/handle_spkac.sh
+|4,39,12,29,1515583613,"~/scripts/handle_spkac.sh"
+-'  12  29  ~/scripts/handle_spkac.sh
+|4,39,12,29,1515583578,"~/scripts/handle_spkac.sh"
+-'  1  0  ~/scripts/handle_spkac.sh
+|4,39,1,0,1515583524,"~/scripts/handle_spkac.sh"
+-'  1  0  ~/scripts/handle_spkac.sh
+|4,39,1,0,1515583524,"~/scripts/handle_spkac.sh"
+-'  1  0  ~/scripts/handle_spkac.sh
+|4,39,1,0,1515583524,"~/scripts/handle_spkac.sh"
+
+# Historique des marques dans les fichiers (les plus récentes en premier) :
+
+> ~/scripts/handle_spkac.sh
+	*	1515583656	0
+	"	3	11
+	^	12	30
+	.	12	29
+	+	8	41
+	+	12	29
