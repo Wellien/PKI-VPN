@@ -1,3 +1,2 @@
 #!/bin/bash
-cd /home/www-java/web-serv/
-/usr/bin/javac -cp . fr/smb/univ/acy/iut/webserv/*.java
+/usr/bin/javac -cp . ../web-serv/fr/smb/univ/acy/iut/webserv/*.java

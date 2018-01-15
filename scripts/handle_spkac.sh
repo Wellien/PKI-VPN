@@ -12,6 +12,8 @@ output=$(openssl ca -config /etc/ssl/openssl.cnf -name client_ca -spkac $spkac_f
 
 cert="/home/www-java/client_ca/newcrt/"$(cat client_ca/serial.old)".pem"
 echo $(date)" Generated cert $cert successfully"  >> log.txt
-cat $cert |mail -s "Retour de votre clé machin" $2
+
+#Todo send back signed key via the mail command
+#cat $cert |mail -s "Retour de votre clé" $email
 
 

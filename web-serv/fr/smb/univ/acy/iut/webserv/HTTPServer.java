@@ -383,7 +383,7 @@ public class HTTPServer extends Server {
 	public static void main(String[] args) {
 		
 		try {
-			InetSocketAddress address = new InetSocketAddress(Inet4Address.getLocalHost(), 8080);
+			InetSocketAddress address = new InetSocketAddress(Inet4Address.getByName("10.102.252.132"), 8080);
 			System.out.println("Bind address : " + address);
 			new HTTPServer(address,0);
 		} catch (Exception e) {
