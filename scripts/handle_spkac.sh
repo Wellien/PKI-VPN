@@ -2,6 +2,7 @@
 
 filename=$1
 email=$2
+test=test
 
 cd /home/www-java/
 spkac_file="certs_req/"$filename".spkac"
