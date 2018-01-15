@@ -1,16 +1,17 @@
 #!/bin/bash
 
+cd /home/www-java/
 filename=$1
 email=$2
-test=test
+echo $(date)" - Received request with $1 $2" >> log.txt
+spkac_file="/home/www-java/certs_req/"$filename".csr"
 
-cd /home/www-java/
-spkac_file="certs_req/"$filename".spkac"
-echo "Spkac file : $spkac_file" >> out.log
-openssl ca -config ca/openssl.cnf -spkac $spkac_file -keyfile client_ca/private/client_ca.key  -cert client_ca/client_ca.pem -status
+echo "Spkac file : $spkac_file" >> log.txt
 
-cert="client_ca/newcrt/"$(cat client_ca/serial.old)".pem"
-echo "cert : $cert" >> out.log
+output=$(openssl ca -config /etc/ssl/openssl.cnf -name client_ca -spkac $spkac_file -keyfile /home/www-java/client_ca/private/client_ca.key  -cert /home/www-java/client_ca/client_ca.pem -batch)
+
+cert="/home/www-java/client_ca/newcrt/"$(cat client_ca/serial.old)".pem"
+echo $(date)" Generated cert $cert successfully"  >> log.txt
 cat $cert |mail -s "Retour de votre clé machin" $2
 
 

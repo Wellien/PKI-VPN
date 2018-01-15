@@ -336,9 +336,8 @@ public class HTTPServer extends Server {
 		
 		/* generate a random filename to handle multiple spkac requests if needed */
 		String filename = randomName(16);
-		
 		/* build the content to write to the file for the pki */
-		spkac = "SPKAC=" + this.urlDecodeString(spkac) + "\n";
+		spkac = "SPKAC=" + this.urlDecodeString(spkac).replaceAll("\\r|\\n", "") + "\n";
 		spkac += "C=FR\n";
 		spkac += "ST=Auvergne-Rhone-Alpes\n";
 		spkac += "L=Annecy\n";
