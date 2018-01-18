@@ -10,7 +10,8 @@ echo "Spkac file : $spkac_file" >> log.txt
 
 output=$(openssl ca -config /etc/ssl/openssl.cnf -name client_ca -spkac $spkac_file -keyfile /home/www-java/client_ca/private/client_ca.key  -cert /home/www-java/client_ca/client_ca.pem -batch)
 
-cert="/home/www-java/client_ca/newcrt/"$(cat client_ca/serial.old)".pem"
+echo $output >> log.txt
+cert="/home/www-java/client_ca/newcerts/"$(cat client_ca/serial.old)".pem"
 echo $(date)" Generated cert $cert successfully"  >> log.txt
 
 #Todo send back signed key via the mail command

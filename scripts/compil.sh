@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/bin/javac -cp . ../web-serv/fr/smb/univ/acy/iut/webserv/*.java
+/usr/bin/javac -cp . /home/www-java/web-serv/fr/smb/univ/acy/iut/webserv/*.java
