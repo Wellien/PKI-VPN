@@ -31,7 +31,7 @@ touch serial/serial # Creation of the serial
 
 # Creation of the ROOT Authority Certification 
 
-sudo openssl req -x509 -config /etc/ssl/openssl.cnf -newkey ec:/etc/ssl/private/reference_key.key -keyout private/root_ca.key -extensions ROOT_CA -days 7300 -out certs/root_ca.pem
+sudo openssl req -x509 -config /etc/ssl/openssl.cnf -newkey ec:/etc/ssl/private/reference_key.key -keyout private/root_ca.key -extensions ROOT_CA -days 7300 -out certs/root_ca.pem -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_ROOT_CA/emailAddress=pkivpn.project@gmail.com"
 
 # "req" Use for create and process certifcate request
 # -x509 Use auto-sign
@@ -64,7 +64,7 @@ touch serial/serial # Creation of the serial
 
 ## Creation of the CLIENT CERTFICATE REQUEST
 
-sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/client_ca.key -out certs/client_ca.req 
+sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/client_ca.key -out certs/client_ca.req -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_CLIENT_CA/emailAddress=pkivpn.project@gmail.com"
 
 # "req" Use for create and process certifcate request
 #-config Specification of the configuration file
@@ -106,7 +106,7 @@ touch serial/serial # Creation of the serial
 
 ## Creation of the SERVER CERTFICATE REQUEST
 
-sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/serveur_ca.key -out certs/serveur_ca.req 
+sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/serveur_ca.key -out certs/serveur_ca.req -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_SERVER_CA/emailAddress=pkivpn.project@gmail.com"
 
 # "req" Use for create and process certifcate request
 #-config Specification of the configuration file
