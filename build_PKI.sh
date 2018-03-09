@@ -74,12 +74,13 @@ sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key
 
 ## Sign the CLIENT CERTIFICATE REQUEST
 
-sudo openssl ca -extensions CLIENT_CA -in certs/client_ca.req -out certs/client_ca.pem -batch
+sudo openssl ca -extensions CLIENT_CA -in certs/client_ca.req -out certs/client_ca.pem -batch -notext
 
 #"ca" Use for sign certificate request
 #-extensons Specify the extensions to use in the config file
 #-in Specify the localisation of certificate request to be signed
 #-out Specify the name and the location of the new CA
+#-notext Don't show the text form of a certificate in the output file.
 
 sudo rm certs/client_ca.req
 
@@ -115,12 +116,13 @@ sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key
 
 ## Sign the SERVER CERTIFICATE REQUEST
 
-sudo openssl ca -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch
+sudo openssl ca -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch -notext
 
 #"ca" Use for sign certificate request
 #-extensons Specify the extensions to use in the config file
 #-in Specify the localisation of certificate request to be signed
 #-out Specify the name and the location of the new CA
+#-notext Don't show the text form of a certificate in the output file.
 
 sudo rm certs/serveur_ca.req
 
