@@ -47,12 +47,12 @@ policy		= policy_anything
 
 
 [ policy_match ]
-countryName		= match		#il doit correspondre à celui deu certificat de l'autorité
-stateOrProvinceName	= match		#il doit correspondre à celui deu certificat de l'autorité
-organizationName	= match		#il doit correspondre à celui deu certificat de l'autorité
-organizationalUnitName	= optional	
-commonName		= supplied	#doit être donner
-emailAddress		= optional
+countryName		= match		            #Le nom du pays doit ètre le même que celui de la CA
+stateOrProvinceName	= match		      #La région ou le département doit ètre le même que celui de la CA
+organizationName	= match		        #Le nom de l'organisation doit ètre le même que celui de la CA
+organizationalUnitName	= optional	#Le nom de l'unité de l'organisation est libre et optionnel
+commonName		= supplied	          #Le nom du certificat ou de la sous-autorité est libre mais doit ètre donner
+emailAddress		= optional          #L'adresse mail est libre et optionnel
 
 [ policy_anything ]
 countryName		= optional
@@ -61,7 +61,7 @@ localityName		= optional
 organizationName	= optional
 organizationalUnitName	= optional
 commonName		= supplied	#doit être donner
-emailAddress		= optional
+emailAddress		= supplied
 
 
 [ req ]					#paramètre par défaut pour la creation d'un certificat
