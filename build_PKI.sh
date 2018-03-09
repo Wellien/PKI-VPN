@@ -17,14 +17,7 @@ sudo wget https://raw.githubusercontent.com/Wellien/PKI-VPN/master/openssl.cnf
 
 
 ############################################################################
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 ##Create root_ca
 
 sudo mkdir root_ca  #Create the main directory
@@ -38,14 +31,7 @@ touch index/index.txt index/index.txt.attr # Creation of the "Data_Base of the C
 touch serial/serial # Creation of the serial
 
 # Creation of the ROOT Authority Certification 
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 sudo openssl req -x509 -config /etc/ssl/openssl.cnf -newkey ec:/etc/ssl/private/reference_key.key -keyout private/root_ca.key -extensions ROOT_CA -days 7300 -out certs/root_ca.pem -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_ROOT_CA/emailAddress=pkivpn.project@gmail.com"
 
 # "req" Use for create and process certifcate request
@@ -61,14 +47,7 @@ sudo echo 1000 >serial/serial # INITIALISATION DU SERIAL
 
 
 ############################################################################
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 ##Create Client_CA
 
 echo "Creation of CLIENT_CA"
@@ -93,14 +72,7 @@ sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key
 #-newkey Create a new key with the follow parameter ( For a not RSA key you need a file referencen, here another key
 #-keyout Out file of the new key
 #-out Specify the name and the location of the new certificate request
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 ## Sign the CLIENT CERTIFICATE REQUEST
 
 sudo openssl ca -extensions CLIENT_CA -in certs/client_ca.req -out certs/client_ca.pem -batch -notext
@@ -117,14 +89,7 @@ sudo echo 1000 >serial/serial # INITIALISATION DU SERIAL
 
 
 ##############################################################################
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 ##Create Server_CA
 
 echo "Creation of Server_CA"
@@ -149,14 +114,7 @@ sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key
 #-newkey Create a new key with the follow parameter ( For a not RSA key you need a file referencen, here another key
 #-keyout Out file of the new key
 #-out Specify the name and the location of the new certificate request
-askYesNo() {
-		read -p "$1 [y/n]" choice
-		case "$choice" in
-			y|Y ) return 0;;
-	   		n|N ) return 1;;
-			* ) return $(askYesNo "$1");;
-		esac
-}
+
 ## Sign the SERVER CERTIFICATE REQUEST
 
 sudo openssl ca -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch -notext
