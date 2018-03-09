@@ -3,21 +3,21 @@ RANDFILE		= $ENV::HOME/.rnd
 
 [ ca ]
 
-default_ca	= root_ca	#definition du CA par default
+default_ca	= root_ca	#definition du root CA come CA par default
 
 [ root_ca ]
 
 root_ca		= /etc/ssl/root_ca	#variable de base
 certs		= $root_ca/certs	#dossier où les certificats émis sont conservés
 new_certs_dir	= $root_ca/newcerts	#dossier où les certificats crées sont conservés
-database	= $root_ca/index/index.txt	#dossier de la base de donnée
-certificate	= $root_ca/certs/root_ca.pem	#le certificat du root CA
-serial		= $root_ca/serial/serial	#le numéro de séris
-private_key	= $root_ca/private/root_ca.key	#la clé privé de la CA
+database	= $root_ca/index/index.txt	#dossier de la base de donnée/des logs
+certificate	= $root_ca/certs/root_ca.pem	#l'emplacement du root CA
+serial		= $root_ca/serial/serial	#fichier contenant le numéro de série
+private_key	= $root_ca/private/root_ca.key	#emplacement de la clé privé de la CA
 default_days	= 7300			#la durée de validité de la CA en jour
 default_md	= sha384		#Alogorithme de hashage
 preserve	= no			#ne conserve pas les DN données
-policy		= policy_match		#voir policy_match pour la politique à aborder
+policy		= policy_match		#référence à l'extension dans le fichier de conf sur les régles concernant les certificats
 
 [ client_ca ]
 client_ca	= /etc/ssl/client_ca
