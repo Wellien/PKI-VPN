@@ -61,7 +61,7 @@ localityName		= optional
 organizationName	= optional
 organizationalUnitName	= optional
 commonName		= supplied	#doit être donner
-emailAddress		= supplied
+emailAddress		= optional
 
 
 [ req ]					#paramètre par défaut pour la creation d'un certificat
