@@ -122,7 +122,7 @@ then
 	exit
 	fi
 
-	sudo openssl ca -extensions CLIENT_CA -in certs/client_ca.req -out certs/client_ca.pem -batch -notext
+	sudo openssl ca -config /etc/ssl/openssl.cnf -extensions CLIENT_CA -in certs/client_ca.req -out certs/client_ca.pem -batch -notext
 
 	#"ca" Use for sign certificate request
 	#-extensons Specify the extensions to use in the config file
@@ -178,7 +178,7 @@ then
 		rm -r serveur_ca/ 
 	exit
 	fi
-	sudo openssl ca -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch -notext
+	sudo openssl ca -config /etc/ssl/openssl.cnf -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch -notext
 
 	#"ca" Use for sign certificate request
 	#-extensons Specify the extensions to use in the config file
