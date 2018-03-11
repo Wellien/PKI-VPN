@@ -94,11 +94,11 @@ challengePassword_min		= 4
 challengePassword_max		= 20
 
 [ ROOT_CA ]
-nsComment                       = "ROOT CA"
-subjectKeyIdentifier            = hash
-authorityKeyIdentifier          = keyid,issuer:always
-basicConstraints                = critical,CA:TRUE,pathlen:1
-keyUsage                        = keyCertSign, cRLSign
+nsComment                       = "ROOT CA"                     
+subjectKeyIdentifier            = hash                          # Hash signifie que l'identificateur de la clé publique du certificat suivra automatiquement la RFC3280
+authorityKeyIdentifier          = keyid,issuer:always           # 
+basicConstraints                = critical,CA:TRUE,pathlen:1    #CA:true désigne que le certificat est une CA et pathlen=1 signifie qu'il y a 1 ou plusiseurs sous CA
+keyUsage                        = keyCertSign, cRLSign          # La clé peut être utiliser pour signer des certificats ou pour les révoquer.
 
 
 [ CLIENT_CA ]
