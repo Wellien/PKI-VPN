@@ -67,7 +67,6 @@ emailAddress		= optional          #L'adresse mail est libre et optionnel.
 [ req ]					#paramètre par défaut pour la creation d'un certificat
 default_bits		= 2048
 distinguished_name	= req_distinguished_name
-attributes		= req_attributes
 
 [ req_distinguished_name ]		#paramètre par défaut pour la creation d'un certificat
 countryName			= Country Name (2 letter code)
@@ -87,11 +86,6 @@ commonName_max			= 64
 
 emailAddress			= Email Address
 emailAddress_max		= 64
-
-[ req_attributes ]
-challengePassword		= A challenge password
-challengePassword_min		= 4
-challengePassword_max		= 20
 
 [ ROOT_CA ]
 nsComment                       = "ROOT CA"                     
