@@ -125,17 +125,9 @@ nsComment                       = "Client Certificate"
 subjectKeyIdentifier            = hash                                           # Hash signifie que l'identificateur de la clé publique du certificat suivra automatiquement la RFC3280
 authorityKeyIdentifier          = keyid,issuer:always                            #Fait apparaitre dans le certificat l'identifiant de la clé publique,le sérial et le nom de l'autorité de certification ayant signé le certificat
 basicConstraints                = critical,CA:FALSE                              # Ce certificat n'est pas celui d'une CA.
-keyUsage                        = critical, digitalSignature, nonRepudiation
-nsCertType                      = client, email
-extendedKeyUsage		            = clientAuth, emailProtection
+keyUsage                        = critical, digitalSignature, nonRepudiation     #Digital Signature : la clé publique peut être utiliser pour le chiffrement. nonRepudiation :la clé publique peut être utilisé pour vérifier les signatures de services.
+nsCertType                      = client, email                                  #Type de certificat : Client et S/MIME ( un certificat S/MIME sert à signer des mails)
+extendedKeyUsage		            = clientAuth, emailProtection                    #La clé sert aussi à l'authentification du client et à la protection des mails.
 
-[ MAIL ]
-nsComment                       = "Mail Certificate"
-subjectKeyIdentifier            = hash
-authorityKeyIdentifier          = keyid,issuer:always
-basicConstraints                = critical,CA:FALSE                                  # Ce certificat n'est pas celui d'une CA.
-keyUsage                        = keyEncipherment, digitalSignature, nonRepudiation
-nsCertType                      = email
-extendedKeyUsage		= emailProtection
-issuerAltName			= issuer:copy
+
 
