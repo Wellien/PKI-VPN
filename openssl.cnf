@@ -115,27 +115,25 @@ nsCertType                      = sslCA                          #Ce certificat 
 nsComment                       = "Server Certificate"
 subjectKeyIdentifier            = hash                                                             # Hash signifie que l'identificateur de la clé publique du certificat suivra automatiquement la RFC3280
 authorityKeyIdentifier          = keyid,issuer:always                                              #Fait apparaitre dans le certificat l'identifiant de la clé publique,le sérial et le nom de l'autorité de certification ayant signé le certificat
-basicConstraints                = critical,CA:FALSE
-keyUsage                        = critical, digitalSignature, nonRepudiation, keyEncipherment
-nsCertType                      = server
-extendedKeyUsage		            = serverAuth
-issuerAltName			              = issuer:copy
+basicConstraints                = critical,CA:FALSE                                                # Ce certificat n'est pas celui d'une CA.
+keyUsage                        = critical, digitalSignature, nonRepudiation, keyEncipherment      #Digital Signature : la clé publique peut être utiliser pour le chiffrement. nonRepudiation :la clé publique peut être utilisé pour vérifier les signatures de services. keyEncipherment = la clé privé peut être utilisé pour chiffrer des données.
+nsCertType                      = server                                                           #Type de certificat : ssl serveur
+extendedKeyUsage		            = serverAuth                                                       #authentification du serveur en TLS
 
 [ CLIENT ]
 nsComment                       = "Client Certificate"
 subjectKeyIdentifier            = hash                                           # Hash signifie que l'identificateur de la clé publique du certificat suivra automatiquement la RFC3280
 authorityKeyIdentifier          = keyid,issuer:always                            #Fait apparaitre dans le certificat l'identifiant de la clé publique,le sérial et le nom de l'autorité de certification ayant signé le certificat
-basicConstraints                = critical,CA:FALSE 
+basicConstraints                = critical,CA:FALSE                              # Ce certificat n'est pas celui d'une CA.
 keyUsage                        = critical, digitalSignature, nonRepudiation
-nsCertType                      = client
+nsCertType                      = client, email
 extendedKeyUsage		            = clientAuth, emailProtection
-issuerAltName			              = issuer:copy
 
 [ MAIL ]
 nsComment                       = "Mail Certificate"
 subjectKeyIdentifier            = hash
 authorityKeyIdentifier          = keyid,issuer:always
-basicConstraints                = critical,CA:FALSE
+basicConstraints                = critical,CA:FALSE                                  # Ce certificat n'est pas celui d'une CA.
 keyUsage                        = keyEncipherment, digitalSignature, nonRepudiation
 nsCertType                      = email
 extendedKeyUsage		= emailProtection
