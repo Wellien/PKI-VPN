@@ -17,7 +17,7 @@ then
 
 	cd /etc/ssl/serveur_ca
 	#Creation of the CSR
-	sudo openssl req -new -config /etc/ssl/openssl.cnf -newkey ec:../private/reference_key.key -keyout private/$nom.key -out certs/$nom.req #Creation of the certificate request server
+	sudo openssl req -new -nodes -config /etc/ssl/openssl.cnf -newkey ec:../private/reference_key.key -keyout private/$nom.key -out certs/$nom.req #Creation of the certificate request server
 	#Signature by the CA
 	sudo openssl ca -config /etc/ssl/openssl.cnf -extensions SERVEUR -name serveur_ca -in certs/$nom.req -out newcerts/$nom.pem -notext #Signature of the certificate request server
 
@@ -40,7 +40,7 @@ else
 
 	cd /etc/ssl/client_ca
 	#Creation of the CSR
-	sudo openssl req -new -config /etc/ssl/openssl.cnf -newkey ec:../private/reference_key.key -keyout private/$nom.key -out certs/$nom.req #Creation of the certificate request client	
+	sudo openssl req -new -nodes -config /etc/ssl/openssl.cnf -newkey ec:../private/reference_key.key -keyout private/$nom.key -out certs/$nom.req #Creation of the certificate request client	
 	#Signature by the CA
 	sudo openssl ca -config /etc/ssl/openssl.cnf -extensions CLIENT -name client_ca -in certs/$nom.req -out newcerts/$nom.pem -notext #Signature of the certificate request client
 
