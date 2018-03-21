@@ -13,7 +13,7 @@ askYesNo() {
 		esac
 }
 
-if ! askYesNo "Do you want to create the reference key ?";
+if ! askYesNo "Creation of the key reference ?";
 then 
 exit
 fi
@@ -22,7 +22,7 @@ sudo openssl ecparam -name secp384r1 -genkey -out private/reference_key.key #Cre
 
 #Configuration openssl.cnf
 
-if ! askYesNo "Do you want to download the configuration file ?";
+if ! askYesNo "Download the configuration file ?";
 then 
 	cd /etc/ssl
 	sudo rm private/reference_key.key
@@ -33,19 +33,19 @@ then
 	sudo mv openssl.cnf openssl.cnf.old #Save the old configuration file
 fi
 sudo wget https://raw.githubusercontent.com/Wellien/PKI-VPN/master/openssl.cnf
-
+more openssl.cnf
 ############################################################################
 
 ##Create root_ca
 echo 
-if ! askYesNo "Do you want to create the directory and files for the root_ca ?";
+if ! askYesNo "Create file for the root_ca";
 then 
 	cd /etc/ssl
 	sudo rm private/reference_key.key openssl.cnf
 	exit
 fi
 sudo mkdir root_ca  #Create the main directory
-
+ls
 cd ./root_ca
 
 sudo mkdir certs newcerts index serial private # Creation of all the directory
@@ -54,10 +54,15 @@ touch index/index.txt index/index.txt.attr # Creation of the "Data_Base of the C
 
 touch serial/serial # Creation of the serial
 
+ls 
+
+ls serial
+
+ls index
 
 # Creation of the ROOT Authority Certification 
 
-if ! askYesNo "Do you want to create the root CA ?";
+if ! askYesNo "Create the root authority certification ?";
 then 
 	cd /etc/ssl/
 	sudo rm -r root_ca/
@@ -67,39 +72,45 @@ fi
 
 sudo openssl req -x509 -config /etc/ssl/openssl.cnf -newkey ec:/etc/ssl/private/reference_key.key -keyout private/root_ca.key -extensions ROOT_CA -days 7300 -out certs/root_ca.pem -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_ROOT_CA/emailAddress=pkivpn.project@gmail.com"
 
-# "req" Used to create and process CSRs
-# -x509 Used to auto-sign
-#-config Specify the configuration file
-#-newkey Create a new key with the following parameters (For everything that is not a RSA key you need a reference file, here we use another key.)
-#-keyout Out file for the new key
+sudo openssl x509 -in certs/root_ca.pem -noout -text
+# "req" Use for create and process certifcate request
+# -x509 Use auto-sign
+#-config Specification of the configuration file
+#-newkey Create a new key with the follow parameter ( For a not RSA key you need a file referencen, here another key
+#-keyout Out file of the new key
 #-extensons Specify the extensions to use in the config file
 #-days Time to live of the CA
 #-out Specify the name and the location of the new CA
 
-sudo echo 1000 >serial/serial # SERIAL INITIALISATION
+sudo echo 1000 >serial/serial # INITIALISATION DU SERIAL
 
 ############################################################################
 
 ##Create Client_CA
 
-if askYesNo "Do you want to create the client CA ?";
+if askYesNo "Create the client authority certification ?";
 then  
 
-	echo "Creation of the file for the CLIENT_CA."
+	echo "Creation of the file for the CLIENT_CA"
 	cd /etc/ssl/
 
 	sudo mkdir client_ca #Create the main directory
-
+	ls
 	cd client_ca
 
-	sudo mkdir certs newcerts index serial private # Creation of all the directories
+	sudo mkdir certs newcerts index serial private # Creation of all the directory
 
 	touch index/index.txt index/index.txt.attr # Creation of the "Data_Base of the CA"
 
-	touch serial/serial # Serial creation
+	touch serial/serial # Creation of the serial
+	
+	ls 
 
+	ls serial
+
+	ls index
 	## Creation of the CLIENT CERTFICATE REQUEST
-	if ! askYesNo "Do you want to create the client authority certification request ?";
+	if ! askYesNo "Create the client authority certification request ?";
 	then 
 		cd /etc/ssl
 		rm -r client_ca/ 
@@ -107,15 +118,17 @@ then
 	fi
 	sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/client_ca.key -out certs/client_ca.req -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_CLIENT_CA/emailAddress=pkivpn.project@gmail.com"
 
-	# "req" Use to create and process certifcate request
+	# "req" Use for create and process certifcate request
 	#-config Specification of the configuration file
-	#-newkey Create a new key with the follow parameter (For everything that is not a RSA key you need a reference file, here we use another key.)
+	#-newkey Create a new key with the follow parameter ( For a not RSA key you need a file referencen, here another key
 	#-keyout Out file of the new key
 	#-out Specify the name and the location of the new certificate request
+	
+	sudo openssl req -verify -in certs/client_ca.req 
 
 	## Sign the CLIENT CERTIFICATE REQUEST
 	
-	if ! askYesNo "Do you want to sign the CSR of the client CA with the root_ca ?";
+	if ! askYesNo "Sign the client authority certification request with the root_ca ?";
 	then 
 		cd /etc/ssl
 		rm -r client_ca/ 
@@ -130,6 +143,8 @@ then
 	#-out Specify the name and the location of the new CA
 	#-notext Don't show the text form of a certificate in the output file.
 
+	sudo openssl x509 -in certs/client_ca.pem -noout -text
+
 	sudo rm certs/client_ca.req
 
 	sudo echo 1000 >serial/serial # INITIALISATION DU SERIAL
@@ -138,25 +153,25 @@ fi
 ##############################################################################
 
 ##Create Server_CA
-if askYesNo "Do you want to create the server authority certification ?";
+if askYesNo "Create the server authority certification ?";
 then
 	
-	echo "Creation of Server_CA."
+	echo "Creation of Server_CA"
 	cd /etc/ssl/
 
 	sudo mkdir serveur_ca #Create the main directory
-
+	ls
 	cd serveur_ca
 
 	sudo mkdir certs newcerts index serial private # Creation of all the directory
-
+	ls
 	touch index/index.txt index/index.txt.attr # Creation of the "Data_Base of the CA"
-
+	ls index
 	touch serial/serial # Creation of the serial
-
+	ls serial
 	## Creation of the SERVER CERTFICATE REQUEST
 
-	if ! askYesNo "Do you want to create the server authority certification request ?";
+	if ! askYesNo "Create the server authority certification request ?";
 	then 
 		cd /etc/ssl
 		rm -r serveur_ca/ 
@@ -165,31 +180,29 @@ then
 
 	sudo openssl req -new -config ../openssl.cnf -newkey ec:../private/reference_key.key -keyout private/serveur_ca.key -out certs/serveur_ca.req -subj "/C=FR/ST=Auvergne-Rhone-Alpes/L=Annecy/O=IUT/OU=R&T/CN=PKI&VPN_SERVER_CA/emailAddress=pkivpn.project@gmail.com"
 
-	# "req" Used to create and process CSRs
-	#-config Specify the configuration file
-	#-newkey Create a new key with the following parameter (For everything that is not a RSA key you need a reference file, here we use another key.)
-	#-keyout Out file for the new key
+	# "req" Use for create and process certifcate request
+	#-config Specification of the configuration file
+	#-newkey Create a new key with the follow parameter ( For a not RSA key you need a file referencen, here another key
+	#-keyout Out file of the new key
 	#-out Specify the name and the location of the new certificate request
-
+	sudo openssl req -verify -in certs/serveur_ca.req
 	## Sign the SERVER CERTIFICATE REQUEST
-	if ! askYesNo "Do you watn to sign the server authority certification request ?";
+	if ! askYesNo "Sign the server authority certification request ?";
 	then 
 		cd /etc/ssl
 		rm -r serveur_ca/ 
 	exit
 	fi
 	sudo openssl ca -config /etc/ssl/openssl.cnf -extensions SERVEUR_CA -in certs/serveur_ca.req -out certs/serveur_ca.pem -batch -notext
-
-	#"ca" Used to sign certificate request
-	#-extensions Specify the extensions to use in the config file
-	#-in Specify the localisation of the certificate request to be signed
+	sudo openssl x509 -in certs/serveur_ca.pem -noout -text
+	#"ca" Use for sign certificate request
+	#-extensons Specify the extensions to use in the config file
+	#-in Specify the localisation of certificate request to be signed
 	#-out Specify the name and the location of the new CA
 	#-notext Don't show the text form of a certificate in the output file.
 
 	sudo rm certs/serveur_ca.req
 
-	sudo echo 1000 >serial/serial # SERIAL INITIALISATION
+	sudo echo 1000 >serial/serial # INITIALISATION DU SERIAL
 
 fi
-
-
