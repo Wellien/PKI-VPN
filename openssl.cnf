@@ -101,7 +101,8 @@ subjectKeyIdentifier            = hash                          #Hash signifie q
 authorityKeyIdentifier          = keyid,issuer:always           #Fait apparaitre dans le certificat l'identifiant de la clé publique,le sérial et le nom de l'autorité de certification ayant signé le certificat
 basicConstraints                = critical,CA:TRUE,pathlen:0    #CA:true désigne que le certificat est une CA et pathlen=0 signifie qu'il n'y a pas de sous CA.
 keyUsage                        = keyCertSign, cRLSign          #La clé peut être utiliser pour signer des certificats ou pour les révoquer.
-nsCertType                      = sslCA                         #Ce certificat est de type CA, il sert donc à signer des certificats autre que ceux de CA.
+nsCertType                      = sslCA, email                  #Ce certificat est de type CA, il sert donc à signer des certificats autre que ceux de CA.
+extendedKeyUsage                = emailProtection
 
 [ SERVEUR_CA ]
 nsComment                       = "SERVEUR CA"                   
